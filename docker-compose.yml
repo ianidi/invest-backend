@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  backend:
+    restart: always
+    container_name: backend
+    build: ./
+    environment:
+      POSTGRES_URI: postgresql://postgres:nfiu43fn2ofd9@database-1.cnhqxlnbzmfb.eu-west-1.rds.amazonaws.com/video
+      # POSTGRES_URI: postgresql://backend:11111111@postgres:5432/database
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    ports:
+      - "4000:4000"
+
+    postgres:
+      restart: always
+      image: postgres
+      environment:
+        POSTGRES_USER: backend
+        POSTGRES_PASSWORD: 11111111
+        POSTGRES_DB: database
+        POSTGRES_HOST: postgres
+      volumes:
+        - ./postgres-data:/var/lib/postgresql/data
+      ports:
+        - "5432:5432"

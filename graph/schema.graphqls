@@ -1,0 +1,957 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+enum Status {
+  PENDING
+  PROGRESS
+  FAILED
+  COMPLETE
+}
+
+enum FamilyStatus {
+  no
+  married
+  divorced
+  widowed
+}
+
+enum Gender {
+  m
+  f
+}
+
+type Alert {
+  AlertID: Int!
+  AssetID: Int!
+  Price: String!
+  TimestampOpen: Int!
+}
+
+type Interest {
+  InterestID: Int!
+  OfferID: Int
+  AmountFrom: String
+  AmountTo: String
+  DurationFrom: String
+  DurationTo: String
+  Interest: String
+}
+
+type Info {
+  MemberID: Int!
+  Event: String!
+  ID: Int!
+  Value: String!
+  Rate: String!
+  RateBuy: String!
+  RateSell: String!
+  Change: String!
+  Sentiment: Int!
+  SentimentType: String!
+}
+
+type Subscription {
+  newInfo: Info!
+}
+
+input OfferSignRequest {
+  OfferID: Int!
+  Image: String!
+}
+
+input InvoiceSendToEmailRequest {
+  InvoiceID: Int!
+  Email: String!
+}
+
+type PhoneVerifyResponse {
+  Timeout: Int!
+}
+
+type VerifyResponse {
+  Status: Boolean!
+  Message: String
+  Token: String
+}
+
+type VerifyResendResponse {
+  Status: Boolean!
+  Message: String
+  Timeout: Int
+}
+
+type SignInResponse {
+  Status: Boolean!
+  Message: String
+  Token: String
+}
+
+input RecordRequest {
+  RecordID: Int!
+}
+
+input DragRequest {
+  Position: [Int!]!
+}
+
+input ManagerMediaByInvestIDRequest {
+  RecordID: Int!
+  Category: String!
+}
+
+input ManagerAssignManagerRequest {
+  MemberID: Int!
+}
+
+input ManagerDealByContractIDRequest {
+  OfferID: Int!
+  ContractID: Int!
+}
+
+input OfferInitDealRequest {
+  OfferID: Int!
+  Amount: String!
+  Duration: String!
+}
+
+input ListRequest {
+  SortBy: String!
+  Value: String!
+}
+
+input SearchRequest {
+  Query: String!
+}
+
+input SignUpRequest {
+  FirstName: String!
+  LastName: String!
+  Birthday: String!
+  Citizenship: String!
+  Gender: String!
+  FamilyStatus: String!
+  MaidenName: String!
+  Phone: String!
+  Email: String!
+  Password: String!
+  Country: String!
+  City: String!
+  Zip: String!
+  StreetNumber: String!
+  StreetName: String!
+}
+
+input SignInRequest {
+  Email: String!
+  Password: String!
+}
+
+input ResetRequest {
+  Email: String!
+}
+
+input ValidateFieldRequest {
+  Field: String!
+  Value: String!
+  Type: String
+  Section: String
+  Path: String
+}
+
+type ValudationStatus {
+  Status: Boolean!
+  Message: String!
+}
+
+input OfferGeneratePDFRequest {
+  OfferID: Int!
+}
+
+type FAQ {
+  FAQID: Int!
+  Question: String
+  Answer: String
+  Position: Int
+}
+
+type Media {
+  MediaID: Int!
+  MemberID: Int
+  InvestID: Int
+  URL: String
+  Title: String
+  Position: Int
+  Filename: String
+  Category: String
+  Created: Int
+}
+
+type Contract {
+  ContractID: Int!
+  Title: String!
+  Content: String
+  ContentRaw: String
+  OfferID: Int
+  Current: Boolean
+  Template: Boolean
+}
+
+type Offer {
+  OfferID: Int!
+  MemberID: Int
+  InvestID: Int
+  CurrencyID: Int
+  BankDetailsID: Int
+  Title: String
+  Status: String
+  Subtitle: String
+  Description: String
+  Contract: Contract
+  FAQ: [FAQ]
+}
+
+type ManagerOffer {
+  OfferID: Int!
+  MemberID: Int
+  InvestID: Int
+  CurrencyID: Int
+  BankDetailsID: Int
+  Title: String
+  Status: String
+}
+
+type Deal {
+  DealID: Int!
+  OfferID: Int
+  ContractID: Int
+  MemberID: Int
+  CurrencyID: Int
+  SignatureFilename: String
+  SignatureURL: String
+  VerificationCode: String
+  DateCreated: String
+  DateSigned: String
+  DateVerified: String
+  DatePaid: String
+  DateStart: String
+  DateEnd: String
+  Status: String
+  Amount: String
+  Duration: String
+}
+
+type Invoice {
+  InvoiceID: Int!
+  OfferID: Int
+  MemberID: Int
+  DealID: Int
+  CurrencyID: Int
+  Status: String
+  Amount: String
+  DateCreated: String
+  TimestampCreated: Int
+  DatePaid: String
+  TimestampPaid: Int
+}
+
+type BankDetails {
+  BankDetailsID: Int
+  Title: String
+  BeneficiaryCompany: String
+  BeneficiaryFirstName: String
+  BeneficiaryLastName: String
+  BeneficiaryCountry: String
+  BeneficiaryCity: String
+  BeneficiaryZip: String
+  BeneficiaryAddress: String
+  BankName: String
+  BankBranch: String
+  BankIFSC: String
+  BankBranchCountry: String
+  BankBranchCity: String
+  BankBranchZip: String
+  BankBranchAddress: String
+  BankAccountNumber: String
+  BankAccountType: String
+  BankRoutingNumber: String
+  BankTransferCaption: String
+  BankIBAN: String
+  BankSWIFT: String
+  BankSWIFTCorrespondent: String
+  BankBIC: String
+}
+
+type ManagerSearch {
+  ManagerID: Int!
+  Title: String
+}
+
+type Member {
+  MemberID: Int!
+  Email: String
+  ManagerID: Int
+  IP: String
+  FirstName: String
+  LastName: String
+  Gender: String
+  FamilyStatus: String
+  MaidenName: String
+  Citizenship: String
+  Country: String
+  City: String
+  Zip: String
+  Address1: String
+  Address2: String
+  StreetNumber: String
+  StreetName: String
+  Image: String
+  Birthday: String
+  EmailNotifications: Boolean
+  Phone: String
+  Created: Int
+  Role: Int
+  CurrencyID: Int
+  USD: String
+  EUR: String
+  LeverageAllowed: String
+  StopLossAllowed: String
+  TakeProfitAllowed: String
+  Status: String
+  ManagerRole: String
+}
+
+type Lead {
+  LeadID: Int!
+  ManagerID: Int
+  MemberID: Int
+  CampaignID: Int
+  CurrencyID: Int
+  Email: String
+  Phone: String
+  IP: String
+  FirstName: String
+  LastName: String
+  Gender: String
+  FamilyStatus: String
+  MaidenName: String
+  Citizenship: String
+  Country: String
+  City: String
+  Zip: String
+  Address1: String
+  Address2: String
+  StreetNumber: String
+  StreetName: String
+  Birthday: String
+  Status: String
+  DateCreated: String
+  TimestampCreated: Int
+}
+
+type Comment {
+  CommentID: Int!
+  MemberID: Int
+  Content: String
+  DateCreated: String
+  TimestampCreated: Int
+  DateEdited: String
+  TimestampEdited: Int
+  LeadID: Int
+}
+
+type Checklist {
+  ChecklistID: Int!
+  Title: String
+  Complete: Boolean
+  Position: Int
+  DateCreated: String
+  TimestampCreated: Int
+  LeadID: Int
+}
+
+type Appointment {
+  AppointmentID: Int!
+  Type: String
+  Title: String
+  Description: String
+  DateCreated: String
+  TimestampCreated: Int
+  DateDue: String
+  TimestampDue: Int
+  Status: String
+  LeadID: Int
+}
+
+type Campaign {
+  CampaignID: Int!
+  Title: String
+  Description: String
+  DateCreated: String
+  TimestampCreated: Int
+}
+
+type Result {
+  Status: Boolean!
+  Message: String
+}
+
+type OfferSignResult {
+  Status: Boolean!
+  Message: String
+  Timeout: Int
+}
+
+type OfferPDF {
+  URL: String!
+}
+
+type Category {
+  CategoryID: Int!
+  Title: String!
+}
+
+type Currency {
+  CurrencyID: Int!
+  Title: String!
+  Symbol: String!
+}
+
+type Upload {
+  UploadID: Int!
+  MemberID: Int
+  URL: String
+  Filename: String
+  Category: String
+  Created: Int
+}
+
+type Invest {
+  InvestID: Int!
+  OfferID: Int
+  CategoryID: Int
+  CurrencyID: Int
+  BankDetailsID: Int
+  Title: String
+  Subtitle: String
+  Description: String
+  FAQ: [FAQ]
+  Photo: [Media]
+  Document: [Media]
+  Status: String
+}
+
+type Balance {
+  BalanceID: Int!
+  MemberID: Int
+  CurrencyID: Int
+  Amount: String
+  AmountNegative: Boolean
+}
+
+type TX {
+  TXID: Int!
+  MemberID: Int
+  Amount: String
+  AmountNegative: Boolean
+  CurrencyID: Int
+  Status: String
+  DateCreated: String
+  DateComplete: String
+  TimestampCreated: Int
+  TimestampComplete: Int
+}
+
+input ManagerCreateBankDetailsRequest {
+  Title: String!
+  BeneficiaryCompany: String
+  BeneficiaryFirstName: String
+  BeneficiaryLastName: String
+  BeneficiaryCountry: String
+  BeneficiaryCity: String
+  BeneficiaryZip: String
+  BeneficiaryAddress: String
+  BankName: String
+  BankBranch: String
+  BankIFSC: String
+  BankBranchCountry: String
+  BankBranchCity: String
+  BankBranchZip: String
+  BankBranchAddress: String
+  BankAccountNumber: String
+  BankAccountType: String
+  BankRoutingNumber: String
+  BankTransferCaption: String
+  BankIBAN: String
+  BankSWIFT: String
+  BankSWIFTCorrespondent: String
+  BankBIC: String
+}
+
+input MemberPersonalUpdateRequest {
+  FirstName: String!
+  LastName: String!
+}
+
+input MemberPhoneUpdateRequest {
+  Phone: String!
+}
+
+input MemberEmailUpdateRequest {
+  Email: String!
+}
+
+input ManagerCreateInvestRequest {
+  CategoryID: Int!
+  Title: String!
+  Subtitle: String!
+  Description: String!
+}
+
+input ManagerCreateOfferRequest {
+  InvestID: Int!
+  MemberID: Int!
+  CurrencyID: Int!
+  BankDetailsID: Int!
+  Title: String!
+}
+
+input ManagerCreateInterestRequest {
+  OfferID: Int!
+  AmountFrom: String!
+  AmountTo: String!
+  DurationFrom: String!
+  DurationTo: String!
+  Interest: String!
+}
+
+input ManagerCreateCategoryRequest {
+  Title: String!
+}
+
+input ManagerCreateContractRequest {
+  Title: String
+  ContentRaw: String
+}
+
+input ManagerCreateCurrencyRequest {
+  Title: String!
+  Symbol: String!
+}
+
+input ManagerCreateLeadRequest {
+  ManagerID: Int
+  MemberID: Int
+  CampaignID: Int
+  CurrencyID: Int
+  Email: String
+  Phone: String
+  IP: String
+  FirstName: String
+  LastName: String
+  Gender: String
+  FamilyStatus: String
+  MaidenName: String
+  Citizenship: String
+  Country: String
+  City: String
+  Zip: String
+  Address1: String
+  Address2: String
+  StreetNumber: String
+  StreetName: String
+  Birthday: String
+  Status: String
+}
+
+input ManagerCreateCommentRequest {
+  Content: String
+  LeadID: Int
+}
+
+input ManagerCreateChecklistRequest {
+  Title: String
+  Complete: Boolean
+  Position: Int
+  LeadID: Int
+}
+
+input ManagerCreateAppointmentRequest {
+  Type: String
+  Title: String
+  Description: String
+  DateDue: String
+  Status: String
+  LeadID: Int
+}
+
+input ManagerCreateCampaignRequest {
+  Title: String
+  Description: String
+}
+
+input ManagerEditLeadRequest {
+  LeadID: Int!
+  ManagerID: Int
+  MemberID: Int
+  CampaignID: Int
+  CurrencyID: Int
+  Email: String
+  Phone: String
+  IP: String
+  FirstName: String
+  LastName: String
+  Gender: String
+  FamilyStatus: String
+  MaidenName: String
+  Citizenship: String
+  Country: String
+  City: String
+  Zip: String
+  Address1: String
+  Address2: String
+  StreetNumber: String
+  StreetName: String
+  Birthday: String
+  Status: String
+}
+
+input ManagerEditCommentRequest {
+  CommentID: Int!
+  Content: String
+  LeadID: Int
+}
+
+input ManagerEditChecklistRequest {
+  ChecklistID: Int!
+  Title: String
+  Complete: Boolean
+  Position: Int
+  LeadID: Int
+}
+
+input ManagerEditAppointmentRequest {
+  AppointmentID: Int!
+  Type: String
+  Title: String
+  Description: String
+  DateDue: String
+  Status: String
+  LeadID: Int
+}
+
+input ManagerEditCampaignRequest {
+  CampaignID: Int!
+  Title: String
+  Description: String
+}
+
+input ManagerEditMediaRequest {
+  MediaID: Int!
+  Title: String!
+}
+
+input ManagerEditBankDetailsRequest {
+  BankDetailsID: Int!
+  Title: String!
+  BeneficiaryCompany: String
+  BeneficiaryFirstName: String
+  BeneficiaryLastName: String
+  BeneficiaryCountry: String
+  BeneficiaryCity: String
+  BeneficiaryZip: String
+  BeneficiaryAddress: String
+  BankName: String
+  BankBranch: String
+  BankIFSC: String
+  BankBranchCountry: String
+  BankBranchCity: String
+  BankBranchZip: String
+  BankBranchAddress: String
+  BankAccountNumber: String
+  BankAccountType: String
+  BankRoutingNumber: String
+  BankTransferCaption: String
+  BankIBAN: String
+  BankSWIFT: String
+  BankSWIFTCorrespondent: String
+  BankBIC: String
+}
+
+input ManagerEditInvestRequest {
+  InvestID: Int!
+  CategoryID: Int!
+  Title: String!
+  Subtitle: String!
+  Description: String!
+}
+
+input ManagerEditOfferRequest {
+  OfferID: Int!
+  CurrencyID: Int!
+  Title: String!
+}
+
+input ManagerEditCategoryRequest {
+  CategoryID: Int!
+  #
+}
+
+input ManagerEditContractRequest {
+  ContractID: Int!
+  Title: String
+  ContentRaw: String
+}
+
+input ManagerEditCurrencyRequest {
+  CurrencyID: Int!
+  #
+}
+
+input ManagerEditInvoiceRequest {
+  InvoiceID: Int!
+  Status: String!
+}
+
+input PhoneVerifyRequest {
+  Code: String!
+  Action: String!
+}
+
+input VerifyRequest {
+  Action: String!
+  Method: String!
+  Hash: String!
+  Code: String!
+}
+
+input VerifyResendRequest {
+  Email: String!
+}
+
+input ResetCompleteRequest {
+  Action: String!
+  Method: String!
+  Hash: String!
+  Code: String!
+  Password: String!
+}
+
+#
+input Verify {
+  method: String
+  hash: String!
+  code: String!
+}
+
+input OfferPhoneVerifyRequest {
+  OfferID: Int!
+  Code: String!
+}
+
+type CreationResponse {
+  RecordID: Int!
+}
+
+input ManagerAssignMemberToOfferRequest {
+  OfferID: Int!
+  MemberID: Int!
+}
+
+input ManagerAssignInvestToOfferRequest {
+  OfferID: Int!
+  InvestID: Int!
+}
+
+input ManagerDuplicateAndAssignContractToOfferRequest {
+  OfferID: Int!
+  ContractID: Int!
+}
+
+input ManagerAssignBankDetailsToOfferRequest {
+  OfferID: Int!
+  BankDetailsID: Int!
+}
+
+input ManagerAssignLeadToManagerRequest {
+  LeadID: Int!
+  ManagerID: Int!
+}
+
+input ManagerDuplicateRequest {
+  RecordID: Int!
+}
+
+type Query {
+  Invest(input: RecordRequest!): Invest!
+  InvestByOfferID(input: RecordRequest): Invest!
+
+  InterestListByOfferID(input: RecordRequest): [Interest!]!
+  ManagerDealByContractID(input: ManagerDealByContractIDRequest): Deal!
+  Offer(input: RecordRequest!): Offer!
+  ContractByOfferID(input: RecordRequest!): Contract!
+  DealByOfferID(input: RecordRequest!): Deal!
+
+  InterestByDealID(input: RecordRequest): Interest!
+  InterestByOfferID(input: RecordRequest): Interest!
+
+  Invoice(input: RecordRequest!): Invoice!
+  InvoiceByDealID(input: RecordRequest): Invoice!
+
+  BankDetailsByInvoiceID(input: RecordRequest): BankDetails!
+
+  OfferByInvoiceID(input: RecordRequest!): Invest!
+
+  ManagerBankDetails(input: RecordRequest!): BankDetails!
+  ManagerBankDetailsByOfferID(input: RecordRequest): BankDetails!
+  ManagerInvest(input: RecordRequest!): Invest!
+  ManagerMediaByInvestID(input: ManagerMediaByInvestIDRequest!): [Media!]!
+  ManagerInvestByOfferID(input: RecordRequest): Invest!
+  ManagerOffer(input: RecordRequest!): ManagerOffer!
+  ManagerDeal(input: RecordRequest!): Deal!
+  ManagerInvoiceByDealID(input: RecordRequest): Invoice!
+  ManagerContract(input: RecordRequest!): Contract!
+  ManagerCategory(input: RecordRequest!): Category!
+  ManagerCurrency(input: RecordRequest!): Currency!
+  ManagerMember(input: RecordRequest!): Member!
+  ManagerMemberByOfferID(input: RecordRequest!): Member!
+  ManagerManager(input: RecordRequest!): Member!
+  ManagerLead(input: RecordRequest!): Lead!
+  ManagerComment(input: RecordRequest!): Comment!
+  ManagerChecklist(input: RecordRequest!): Checklist!
+  ManagerAppointment(input: RecordRequest!): Appointment!
+  ManagerCampaign(input: RecordRequest!): Campaign!
+
+  OfferList: [Invest!]!
+  DealList: [Deal!]!
+  ContractList: [Contract!]!
+  CategoryList: [Category!]!
+  CurrencyList: [Currency!]!
+  BalanceList: [Balance!]!
+  TXList: [TX!]!
+
+  ManagerBankDetailsList(input: ListRequest): [BankDetails!]!
+  ManagerInvestList(input: ListRequest): [Invest!]!
+  ManagerOfferList(input: ListRequest): [ManagerOffer!]!
+  ManagerDealList(input: ListRequest): [Deal!]!
+  ManagerDealListByOfferID(input: RecordRequest!): [Deal!]!
+  ManagerContractList(input: ListRequest): [Contract!]!
+  ManagerCategoryList(input: ListRequest): [Category!]!
+  ManagerCurrencyList(input: ListRequest): [Currency!]!
+  ManagerLeadList(input: ListRequest): [Lead!]!
+  ManagerCommentList(input: ListRequest): [Comment!]!
+  ManagerCommentListByLeadID(input: RecordRequest): [Comment!]!
+  ManagerChecklistList(input: ListRequest): [Checklist!]!
+  ManagerAppointmentList(input: ListRequest): [Appointment!]!
+  ManagerAppointmentListByLeadID(input: RecordRequest): [Appointment!]!
+  ManagerCampaignList(input: ListRequest): [Campaign!]!
+  ManagerManagerList(input: ListRequest): [Member!]!
+
+  ManagerContractListByOfferID(input: RecordRequest): [Contract!]!
+  ManagerInterestListByOfferID(input: RecordRequest): [Interest!]!
+
+  ManagerSearchMember(input: SearchRequest): [Member!]!
+  ManagerSearchMemberNoManager(input: SearchRequest): [Member!]!
+  ManagerSearchInvest(input: SearchRequest): [Invest!]!
+  ManagerSearchContract(input: SearchRequest): [Contract!]!
+  ManagerSearchCurrency(input: SearchRequest): [Currency!]!
+  ManagerSearchBankDetails(input: SearchRequest): [BankDetails!]!
+  ManagerSearchManager(input: SearchRequest): [ManagerSearch!]!
+
+  Member: Member!
+  alert: [Alert!]!
+}
+
+type Mutation {
+  MemberPersonalUpdate(input: MemberPersonalUpdateRequest!): Result!
+  MemberPhoneUpdate(input: MemberPhoneUpdateRequest!): Result!
+  MemberEmailUpdate(input: MemberEmailUpdateRequest!): Result!
+
+  ManagerCreateBankDetails(input: ManagerCreateBankDetailsRequest!): CreationResponse!
+  ManagerCreateInvest(input: ManagerCreateInvestRequest!): CreationResponse!
+  ManagerCreateOffer(input: ManagerCreateOfferRequest!): CreationResponse!
+  ManagerCreateInterest(input: ManagerCreateInterestRequest!): CreationResponse!
+  ManagerCreateCategory(input: ManagerCreateCategoryRequest!): CreationResponse!
+  ManagerCreateContract(input: ManagerCreateContractRequest!): CreationResponse!
+  ManagerCreateCurrency(input: ManagerCreateCurrencyRequest!): CreationResponse!
+
+  ManagerCreateLead(input: ManagerCreateLeadRequest!): CreationResponse!
+  ManagerCreateComment(input: ManagerCreateCommentRequest!): CreationResponse!
+  ManagerCreateChecklist(input: ManagerCreateChecklistRequest!): CreationResponse!
+  ManagerCreateAppointment(input: ManagerCreateAppointmentRequest!): CreationResponse!
+  ManagerCreateCampaign(input: ManagerCreateCampaignRequest!): CreationResponse!
+
+  ManagerAssignMemberToOffer(input: ManagerAssignMemberToOfferRequest!): Result!
+  ManagerAssignInvestToOffer(input: ManagerAssignInvestToOfferRequest!): Result!
+  ManagerDuplicateAndAssignContractToOffer(input: ManagerDuplicateAndAssignContractToOfferRequest!): Result!
+  ManagerAssignBankDetailsToOffer(input: ManagerAssignBankDetailsToOfferRequest!): Result!
+  ManagerAssignLeadToManager(input: ManagerAssignLeadToManagerRequest!): Result!
+
+  ManagerDuplicateInvest(input: ManagerDuplicateRequest!): CreationResponse!
+  ManagerDuplicateOffer(input: ManagerDuplicateRequest!): CreationResponse!
+  ManagerDuplicateContract(input: ManagerDuplicateRequest!): CreationResponse!
+
+  ManagerDeactivateOffer(input: RecordRequest!): Result!
+  ManagerActivateOffer(input: RecordRequest!): Result!
+  ManagerCancelOffer(input: RecordRequest!): Result!
+
+  ManagerEditBankDetails(input: ManagerEditBankDetailsRequest!): Result!
+  ManagerEditInvest(input: ManagerEditInvestRequest!): Result!
+  ManagerEditOffer(input: ManagerEditOfferRequest!): Result!
+  ManagerEditCategory(input: ManagerEditCategoryRequest!): Result!
+  ManagerEditContract(input: ManagerEditContractRequest!): Result!
+  ManagerEditCurrency(input: ManagerEditCurrencyRequest!): Result!
+  ManagerEditInvoice(input: ManagerEditInvoiceRequest!): Result!
+  ManagerEditLead(input: ManagerEditLeadRequest!): Result!
+  ManagerEditComment(input: ManagerEditCommentRequest!): Result!
+  ManagerEditChecklist(input: ManagerEditChecklistRequest!): Result!
+  ManagerEditAppointment(input: ManagerEditAppointmentRequest!): Result!
+  ManagerEditCampaign(input: ManagerEditCampaignRequest!): Result!
+  ManagerEditMedia(input: ManagerEditMediaRequest!): Result!
+
+  ManagerRemoveLead(input: RecordRequest!): Result!
+  ManagerRemoveComment(input: RecordRequest!): Result!
+  ManagerRemoveChecklist(input: RecordRequest!): Result!
+  ManagerRemoveAppointment(input: RecordRequest!): Result!
+  ManagerRemoveCampaign(input: RecordRequest!): Result!
+  ManagerRemoveInterest(input: RecordRequest!): Result!
+  ManagerRemoveManager(input: RecordRequest!): Result!
+  ManagerRemoveMedia(input: RecordRequest!): Result!
+
+  ManagerDragMedia(input: DragRequest!): Result!
+
+  ManagerAssignManager(input: ManagerAssignManagerRequest!): Result!
+
+  ValidateField(input: ValidateFieldRequest!): ValudationStatus!
+
+  OfferInitDeal(input: OfferInitDealRequest!): Result!
+  OfferGeneratePDF(input: RecordRequest!): OfferPDF!
+  OfferSign(input: OfferSignRequest!): OfferSignResult!
+
+  CancelDeal(input: RecordRequest!): Result!
+  RemoveDeal(input: RecordRequest!): Result!
+
+  InvoiceSendToEmail(input: InvoiceSendToEmailRequest!): Result!
+
+  SignIn(input: SignInRequest!): SignInResponse!
+  SignUp(input: SignUpRequest!): CreationResponse!
+  Reset(input: ResetRequest!): Result!
+  ResetComplete(input: ResetCompleteRequest!): VerifyResponse!
+  PhoneVerify(input: PhoneVerifyRequest!): PhoneVerifyResponse!
+  Verify(input: VerifyRequest!): VerifyResponse!
+  VerifyResend(input: VerifyResendRequest!): VerifyResendResponse!
+
+  OfferPhoneVerify(input: OfferPhoneVerifyRequest!): Result!
+  OfferPhoneVerifyResend(input: RecordRequest!): PhoneVerifyResponse!
+}
+
+###
+
+input Code {
+  code: String!
+}

@@ -1,0 +1,1549 @@
+basePath: /
+definitions:
+  admin.Error:
+    properties:
+      Error:
+        example: ERROR_MESSAGE
+        type: string
+      Status:
+        example: false
+        type: boolean
+    type: object
+  admin.Settings:
+    properties:
+      AdminEmail:
+        description: Email адрес для связи с администрацией
+        type: string
+      AdminTelegram:
+        description: Telegram аккаунт для связи с администрацией
+        type: string
+      BookInAdvanceDaysRestriction:
+        description:
+          За сколько дней заблаговременно можно забронировать переговорную
+          комнату
+        type: integer
+      CometchatAPIKey:
+        description: API ключ cometchat
+        type: string
+      CometchatAppID:
+        description: APP ID cometchat
+        type: string
+      MaxSlotsPerBooking:
+        description: Максимальное количество слотов на одно бронирование
+        type: integer
+      PushChatNewMessage:
+        description: Текст нового сообщения в чате
+        type: string
+      SMSAPIKey:
+        description: API ключ сервиса отправки SMS
+        type: string
+      SMSLogin:
+        description: Логин сервиса отправки SMS
+        type: string
+      SMSNewPassIssued:
+        description: Текст SMS со ссылкой на пропуск гостя
+        type: string
+      SMTPFromEmail:
+        description: SMTP email отправителя
+        type: string
+      SMTPFromName:
+        description: SMTP имя отправителя
+        type: string
+      SMTPHost:
+        description: SMTP хост
+        type: string
+      SMTPPassword:
+        description: SMTP пароль
+        type: string
+      SMTPPort:
+        description: SMTP порт
+        type: integer
+      SMTPUsername:
+        description: SMTP имя пользователя
+        type: string
+      SettingsID:
+        type: integer
+      SlotDuration:
+        description: Размер слота бронирования в минутах
+        type: integer
+      TimeForBookingConfirmation:
+        description: Время на подтверждение переговорной комнаты в минутах
+        type: integer
+      URLAbout:
+        description: Ссылка о проекте
+        type: string
+      URLLicense:
+        description: Ссылка на лицензии
+        type: string
+      URLPrivacy:
+        description: Ссылка на политику конфиденциальности
+        type: string
+      URLServices:
+        description: Ссылка на услуги
+        type: string
+      URLTOS:
+        description: Ссылка на условия использования
+        type: string
+    type: object
+  admin.Success:
+    properties:
+      Status:
+        example: true
+        type: boolean
+    type: object
+  jwt.ErrorRes:
+    properties:
+      Error:
+        example: ERROR_MESSAGE
+        type: string
+      Status:
+        example: false
+        type: boolean
+    type: object
+  jwt.SigninRes:
+    properties:
+      AuthorizationHeader:
+        type: string
+      BearerTokenValue:
+        type: string
+    type: object
+  member.AccessMemberMerged:
+    properties:
+      MemberID:
+        type: integer
+    type: object
+  member.ChatTokenRes:
+    properties:
+      ChatToken:
+        type: string
+    type: object
+  member.Error:
+    properties:
+      Error:
+        example: ERROR_MESSAGE
+        type: string
+      Status:
+        example: false
+        type: boolean
+    type: object
+  member.Member:
+    properties:
+      AvatarURI:
+        description: Фотография пользователя
+        type: string
+      ChatLogin:
+        description: Логин xmpp
+        type: string
+      ChatPassword:
+        description: Пароль xmpp
+        type: string
+      ChatToken:
+        description: Токен cometchat.com
+        type: string
+      Email:
+        description: Электронный адрес
+        type: string
+      Faculty:
+        description: Факультет
+        type: string
+      Gender:
+        description: Пол m/f
+        type: string
+      InterestsComplete:
+        description: Интересы заполнены
+        type: boolean
+      Lastname:
+        type: string
+      MemberID:
+        type: integer
+      Name:
+        description: Имя
+        type: string
+      PhoneCountryCode:
+        description: Мобильный телефон - код страны
+        type: string
+      PhoneNumber:
+        description: Мобильный телефон - номер телефона
+        type: string
+      RoommateSearch:
+        description: Показывать в анкете статус "ищу соседа"
+        type: boolean
+      SignupComplete:
+        description: Завершена ли регистрация
+        type: boolean
+      Surname:
+        type: string
+      UniversityID:
+        description: ID университета, к которому относится пользователь
+        type: integer
+    type: object
+  member.Success:
+    properties:
+      Status:
+        example: true
+        type: boolean
+    type: object
+  operator.Error:
+    properties:
+      Error:
+        example: ERROR_MESSAGE
+        type: string
+      Status:
+        example: false
+        type: boolean
+    type: object
+  operator.Pass:
+    properties:
+      Active:
+        description: Состояние (активность)
+        type: boolean
+      CoworkingID:
+        description: ID коворкинга, к которому относится пропуск
+        type: integer
+      DateEnd:
+        description: Timestamp окончания действия
+        type: string
+      DateStart:
+        description: Timestamp начала действия
+        type: string
+      IssuerID:
+        description: ID администратора, который выдал пропуск
+        type: integer
+      MemberID:
+        description: ID пользователя, которому выдан пропуск
+        type: integer
+      PassID:
+        type: integer
+      Status:
+        description: Состояние (статус пропуска, например, подтвержден)
+        type: string
+    type: object
+  operator.Room:
+    properties:
+      Active:
+        description: Состояние (активность)
+        type: boolean
+      Capacity:
+        description: Вмещает в себя n человек
+        type: integer
+      CoworkingID:
+        description: ID коворкинга, к которому относится переговорная комната
+        type: integer
+      Description:
+        description: Описание комнаты
+        type: string
+      Image:
+        description: Фотография комнаты
+        type: string
+      RoomID:
+        type: integer
+      Title:
+        description: Название комнаты
+        type: string
+    type: object
+  operator.Success:
+    properties:
+      Status:
+        example: true
+        type: boolean
+    type: object
+  public.Error:
+    properties:
+      Error:
+        example: ERROR_MESSAGE
+        type: string
+      Status:
+        example: false
+        type: boolean
+    type: object
+  public.Settings:
+    properties:
+      AdminEmail:
+        description: Email адрес для связи с администрацией
+        type: string
+      AdminTelegram:
+        description: Telegram аккаунт для связи с администрацией
+        type: string
+      BookInAdvanceDaysRestriction:
+        description:
+          За сколько дней заблаговременно можно забронировать переговорную
+          комнату
+        type: integer
+      MaxSlotsPerBooking:
+        description: Максимальное количество слотов на одно бронирование
+        type: integer
+      PushChatNewMessage:
+        description: Текст нового сообщения в чате
+        type: string
+      SlotDuration:
+        description: Размер слота бронирования в минутах
+        type: integer
+      TimeForBookingConfirmation:
+        description: Время на подтверждение переговорной комнаты в минутах
+        type: integer
+      URLAbout:
+        description: Ссылка о проекте
+        type: string
+      URLLicense:
+        description: Ссылка на лицензии
+        type: string
+      URLPrivacy:
+        description: Ссылка на политику конфиденциальности
+        type: string
+      URLServices:
+        description: Ссылка на услуги
+        type: string
+      URLTOS:
+        description: Ссылка на условия использования
+        type: string
+    type: object
+  public.Success:
+    properties:
+      Status:
+        example: true
+        type: boolean
+    type: object
+host: localhost:4000
+info:
+  contact:
+    email: support@swagger.io
+    name: Ivan Anidi
+    url: https://www.swagger.io/support
+  description: Server
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: exchange API
+  version: "1.0"
+paths:
+  /admin/settings:
+    get:
+      consumes:
+        - application/json
+      description: SettingsGet
+      operationId: Admin-Settings-Get
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/admin.Settings"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/admin.Error"
+      summary: вернуть настройки системы
+      tags:
+        - Admin
+        - Settings
+  /admin/settings/update:
+    post:
+      consumes:
+        - application/json
+      description: SettingsUpdate
+      operationId: Admin-Settings-Update
+      parameters:
+        - description: Ссылка на услуги
+          in: query
+          name: URLServices
+          required: true
+          type: string
+        - description: Ссылка на лицензии
+          in: query
+          name: URLLicense
+          required: true
+          type: string
+        - description: Ссылка на политику конфиденциальности
+          in: query
+          name: URLPrivacy
+          required: true
+          type: string
+        - description: Ссылка на условия использования
+          in: query
+          name: URLTOS
+          required: true
+          type: string
+        - description: Ссылка о проекте
+          in: query
+          name: URLAbout
+          required: true
+          type: string
+        - description: Размер слота бронирования в минутах
+          in: query
+          name: SlotDuration
+          required: true
+          type: integer
+        - description: Максимальное количество слотов на одно бронирование
+          in: query
+          name: MaxSlotsPerBooking
+          required: true
+          type: integer
+        - description: Время на подтверждение переговорной комнаты в минутах
+          in: query
+          name: TimeForBookingConfirmation
+          required: true
+          type: integer
+        - description:
+            За сколько дней заблаговременно можно забронировать переговорную
+            комнату
+          in: query
+          name: BookInAdvanceDaysRestriction
+          required: true
+          type: integer
+        - description: Логин сервиса отправки SMS
+          in: query
+          name: SMSLogin
+          required: true
+          type: string
+        - description: API ключ сервиса отправки SMS
+          in: query
+          name: SMSAPIKey
+          required: true
+          type: string
+        - description: Текст нового сообщения в чате
+          in: query
+          name: PushChatNewMessage
+          required: true
+          type: string
+        - description: Текст SMS со ссылкой на пропуск гостя
+          in: query
+          name: SMSNewPassIssued
+          required: true
+          type: string
+        - description: Email адрес для связи с администрацией
+          in: query
+          name: AdminEmail
+          required: true
+          type: string
+        - description: Telegram аккаунт для связи с администрацией
+          in: query
+          name: AdminTelegram
+          required: true
+          type: string
+        - description: SMTP хост
+          in: query
+          name: SMTPHost
+          required: true
+          type: string
+        - description: SMTP имя пользователя
+          in: query
+          name: SMTPUsername
+          required: true
+          type: string
+        - description: SMTP пароль
+          in: query
+          name: SMTPPassword
+          required: true
+          type: string
+        - description: SMTP порт
+          in: query
+          name: SMTPPort
+          required: true
+          type: integer
+        - description: SMTP email отправителя
+          in: query
+          name: SMTPFromEmail
+          required: true
+          type: string
+        - description: SMTP имя отправителя
+          in: query
+          name: SMTPFromName
+          required: true
+          type: string
+        - description: API ключ cometchat
+          in: query
+          name: CometchatAPIKey
+          required: true
+          type: string
+        - description: APP ID cometchat
+          in: query
+          name: CometchatAppID
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/admin.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/admin.Error"
+      summary: обновить настройки системы
+      tags:
+        - Admin
+        - Settings
+  /auth/password/reset:
+    post:
+      consumes:
+        - application/json
+      description: PasswordReset
+      operationId: Public-Password-Reset
+      parameters:
+        - description: Способ сброса пароля (email/phone)
+          in: query
+          name: Method
+          required: true
+          type: string
+        - description: Email адрес пользователя
+          in: query
+          name: Email
+          type: string
+        - description: Телефон пользователя в формате 79999999999
+          in: query
+          name: Phone
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/public.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/public.Error"
+      summary: запрос на сброс пароля с помощью электронной почты/номера телефона
+      tags:
+        - Public
+        - Auth
+  /auth/password/set:
+    post:
+      consumes:
+        - application/json
+      description: PasswordSet
+      operationId: Public-Password-Set
+      parameters:
+        - description: Способ сброса пароля (email/phone)
+          in: query
+          name: Method
+          required: true
+          type: string
+        - description: Email адрес пользователя
+          in: query
+          name: Email
+          type: string
+        - description: Телефон пользователя в формате 79999999999
+          in: query
+          name: Phone
+          type: string
+        - description: Код подтверждения сброса пароля, полученный по email/sms
+          in: query
+          name: Code
+          required: true
+          type: string
+        - description: Новый пароль
+          in: query
+          name: Password
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/public.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/public.Error"
+      summary: смена пароля с помощью полученного по email/sms кода подтверждения
+      tags:
+        - Public
+        - Auth
+  /auth/phone/request:
+    post:
+      consumes:
+        - application/json
+      description: PhoneRequestCode
+      operationId: Phone-Auth
+      parameters:
+        - description: Телефон пользователя в формате 79999999999
+          in: query
+          name: Phone
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/public.Settings"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/public.Error"
+      summary: запрос кода для входа по смс
+      tags:
+        - Public
+        - Auth
+  /auth/refresh:
+    post:
+      consumes:
+        - application/json
+      description: Refresh
+      operationId: Public-Refresh
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/jwt.SigninRes"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/jwt.ErrorRes"
+      summary:
+        "обновить JWT токен. В запросе необходимо послать старый `Authorization:
+        Bearer <TOKEN>` header. В ответ придет обновленный `Authorization: Bearer
+        <TOKEN>` header со значением JWT токена"
+      tags:
+        - Public
+        - Auth
+  /auth/signin:
+    post:
+      consumes:
+        - application/json
+      description: Signin
+      operationId: Public-Signin
+      parameters:
+        - description: Email адрес пользователя
+          in: query
+          name: Email
+          required: true
+          type: string
+        - description: Пароль
+          in: query
+          name: Password
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/jwt.SigninRes"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/jwt.ErrorRes"
+      summary:
+        "войти в систему с помощью электронной почты и пароля. В ответ придет
+        `Authorization: Bearer <TOKEN>` header со значением JWT токена"
+      tags:
+        - Public
+        - Auth
+  /chat/new:
+    post:
+      consumes:
+        - application/json
+      description: ChatNew
+      operationId: Member-Chat-New
+      parameters:
+        - description: ID коворкинга, с операторами которого связаться
+          in: query
+          name: CoworkingID
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.AccessMemberMerged"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: начать чат с оператором коворкинга
+      tags:
+        - Member
+        - Chat
+  /chat/token:
+    get:
+      consumes:
+        - application/json
+      description: ChatToken
+      operationId: Member-Chat-Token
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.ChatTokenRes"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: получить токен для чата
+      tags:
+        - Member
+        - Chat
+  /deactivateAccount:
+    post:
+      consumes:
+        - application/json
+      description: DeactivateAccount
+      operationId: Member-Deactivate-Account
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: удалить аккаунт
+      tags:
+        - Member
+        - Deactivate
+  /feed:
+    get:
+      consumes:
+        - application/json
+      description: FeedGet
+      operationId: Member-Feed-Get
+      parameters:
+        - description: Пол
+          in: query
+          name: Gender
+          required: true
+          type: string
+        - description: Показывать студентов только из моего университета
+          in: query
+          name: RestrictUniversity
+          required: true
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Member"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: вернуть feed
+      tags:
+        - Member
+        - Feed
+  /feed/fave:
+    post:
+      consumes:
+        - application/json
+      description: FeedFave
+      operationId: Member-Feed-Fave
+      parameters:
+        - description: FeedID
+          in: query
+          name: FeedID
+          required: true
+          type: integer
+        - description: Лайк = true, убрать лайк = false
+          in: query
+          name: Fave
+          required: true
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Member"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: fave feed
+      tags:
+        - Member
+        - Feed
+  /info:
+    get:
+      consumes:
+        - application/json
+      description: InfoGet
+      operationId: Public-Info-Get
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/public.Settings"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/public.Error"
+      summary: вернуть настройки системы
+      tags:
+        - Public
+        - Settings
+  /match:
+    get:
+      consumes:
+        - application/json
+      description: ProfileGet
+      operationId: Member-match-Get
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Member"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: вернуть данные о совпадениях
+      tags:
+        - Member
+        - Profile
+  /operator/pass:
+    post:
+      consumes:
+        - application/json
+      description: PassGet
+      operationId: Operator-Pass-Get
+      parameters:
+        - description: ID коворкиинга, по которому получить записи о пропусках
+          in: query
+          name: CoworkingID
+          required: true
+          type: integer
+        - description: Получить записи начиная с n
+          in: query
+          name: Offset
+          type: integer
+        - description: Ограничить количество записей n
+          in: query
+          name: Limit
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Pass"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: вернуть информацию о пропусках
+      tags:
+        - Operator
+        - Pass
+  /operator/pass/{id}:
+    get:
+      consumes:
+        - application/json
+      description: PassGetByID
+      operationId: Operator-Pass-Get-By-ID
+      parameters:
+        - description: ID пропуска
+          in: path
+          name: id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Pass"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: вернуть информацию о пропуске по ID пропуска
+      tags:
+        - Operator
+        - Pass
+  /operator/pass/add:
+    post:
+      consumes:
+        - application/json
+      description: PassAdd
+      operationId: Operator-Pass-Add
+      parameters:
+        - description: ID пользователя, которому выдается пропуск
+          in: query
+          name: MemberID
+          required: true
+          type: integer
+        - description: ID коворкинга, к которому относится пропуск
+          in: query
+          name: CoworkingID
+          required: true
+          type: integer
+        - description: Дата начала действия пропуска в формате YYYY-MM-DD
+          in: query
+          name: DateStart
+          required: true
+          type: string
+        - description: Дата окончания действия пропуска в формате YYYY-MM-DD
+          in: query
+          name: DateEnd
+          required: true
+          type: string
+        - description: Состояние (активность)
+          in: query
+          name: Active
+          required: true
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: добавить новый пропуск
+      tags:
+        - Operator
+        - Pass
+  /operator/pass/delete:
+    delete:
+      consumes:
+        - application/json
+      description: PassDeleteByID
+      operationId: Operator-Pass-Delete-By-ID
+      parameters:
+        - description: ID пропуска
+          in: query
+          name: PassID
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: удалить пропуск по ID пропуска
+      tags:
+        - Operator
+        - Pass
+  /operator/pass/notify:
+    post:
+      consumes:
+        - application/json
+      description: PassNotifyByID
+      operationId: Operator-Pass-Notify-By-ID
+      parameters:
+        - description: ID пропуска
+          in: query
+          name: PassID
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: отправить данные пропуска на email адрес охраны
+      tags:
+        - Operator
+        - Pass
+  /operator/pass/update:
+    post:
+      consumes:
+        - application/json
+      description: PassUpdateByID
+      operationId: Operator-Pass-Update-By-ID
+      parameters:
+        - description: ID пропуска
+          in: query
+          name: PassID
+          required: true
+          type: integer
+        - description: Дата начала действия пропуска в формате YYYY-MM-DD
+          in: query
+          name: DateStart
+          required: true
+          type: string
+        - description: Дата окончания действия пропуска в формате YYYY-MM-DD
+          in: query
+          name: DateEnd
+          required: true
+          type: string
+        - description: Состояние (активность)
+          in: query
+          name: Active
+          required: true
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: обновить информацию о пропуске по ID пропуска
+      tags:
+        - Operator
+        - Pass
+  /operator/room:
+    post:
+      consumes:
+        - application/json
+      description: RoomGet
+      operationId: Operator-Room-Get
+      parameters:
+        - description: ID коворкиинга, по которому получить записи о переговорных комнатах
+          in: query
+          name: CoworkingID
+          required: true
+          type: integer
+        - description: Получить записи начиная с n
+          in: query
+          name: Offset
+          type: integer
+        - description: Ограничить количество записей n
+          in: query
+          name: Limit
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Pass"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: вернуть информацию о переговорных комнатах
+      tags:
+        - Operator
+        - Room
+  /operator/room/{id}:
+    get:
+      consumes:
+        - application/json
+      description: RoomGetByID
+      operationId: Operator-Room-Get-By-ID
+      parameters:
+        - description: ID переговорной комнаты
+          in: path
+          name: id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Room"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: вернуть информацию о переговорной комнате по ID комнаты
+      tags:
+        - Operator
+        - Room
+  /operator/room/add:
+    post:
+      consumes:
+        - application/json
+      description: RoomAdd
+      operationId: Operator-Room-Add
+      parameters:
+        - description: ID коворкинга, к которому относится переговорная комната
+          in: query
+          name: CoworkingID
+          required: true
+          type: integer
+        - description: Вмещает в себя n человек
+          in: query
+          name: Capacity
+          required: true
+          type: integer
+        - description: Имя файла загруженного изображения
+          in: query
+          name: Image
+          type: string
+        - description: Описание переговорной комнаты
+          in: query
+          name: Description
+          required: true
+          type: string
+        - description: Название переговорной комнаты
+          in: query
+          name: Title
+          required: true
+          type: string
+        - description: Состояние (активность)
+          in: query
+          name: Active
+          required: true
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: добавить новую переговорную комнату
+      tags:
+        - Operator
+        - Room
+  /operator/room/delete:
+    delete:
+      consumes:
+        - application/json
+      description: RoomDeleteByID
+      operationId: Operator-Room-Delete-By-ID
+      parameters:
+        - description: ID переговорной комнаты
+          in: query
+          name: RoomID
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: удалить комнату по ID комнаты
+      tags:
+        - Operator
+        - Room
+  /operator/room/update:
+    post:
+      consumes:
+        - application/json
+      description: RoomUpdateByID
+      operationId: Operator-Room-Update-By-ID
+      parameters:
+        - description: ID переговорной комнаты
+          in: query
+          name: RoomID
+          required: true
+          type: integer
+        - description: ID коворкинга, к которому относится переговорная комната
+          in: query
+          name: CoworkingID
+          required: true
+          type: integer
+        - description: Вмещает в себя n человек
+          in: query
+          name: Capacity
+          required: true
+          type: integer
+        - description: Имя файла загруженного изображения
+          in: query
+          name: Image
+          type: string
+        - description: Описание переговорной комнаты
+          in: query
+          name: Description
+          required: true
+          type: string
+        - description: Название переговорной комнаты
+          in: query
+          name: Title
+          required: true
+          type: string
+        - description: Состояние (активность)
+          in: query
+          name: Active
+          required: true
+          type: boolean
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/operator.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/operator.Error"
+      summary: обновить информацию о комнате по ID комнаты
+      tags:
+        - Operator
+        - Room
+  /profile:
+    get:
+      consumes:
+        - application/json
+      description: ProfileGet
+      operationId: Member-Profile-Get
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Member"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: вернуть данные профиля пользователя
+      tags:
+        - Member
+        - Profile
+  /profile/NameGender:
+    post:
+      consumes:
+        - application/json
+      description: ProfileFaculty
+      operationId: Profile-Faculty
+      parameters:
+        - description: Название факультета
+          in: query
+          name: Faculty
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      tags:
+        - Member
+        - Profile
+  /profile/RoommateSearch:
+    post:
+      consumes:
+        - application/json
+      description: ProfileRoommateSearch
+      operationId: Profile-RoommateSearch
+      parameters:
+        - description: Значение параметра
+          in: query
+          name: RoommateSearch
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      tags:
+        - Member
+        - Profile
+  /profile/email/update:
+    post:
+      consumes:
+        - application/json
+      description: EmailUpdate
+      operationId: Member-Email-Update
+      parameters:
+        - description: Новый email адрес
+          in: query
+          name: Email
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: запрос на обновление email пользователя
+      tags:
+        - Member
+        - Email
+  /profile/email/verify:
+    post:
+      consumes:
+        - application/json
+      description: EmailVerify
+      operationId: Member-Email-Verify
+      parameters:
+        - description: Код для подтверждения email
+          in: query
+          name: Code
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: подтверждение обновления email пользователя с помощью кода подтверждения
+      tags:
+        - Member
+        - Email
+  /profile/interests:
+    post:
+      consumes:
+        - application/json
+      description: ProfileInterests
+      operationId: Member-Interests
+      parameters:
+        - description: Категория интересов
+          in: query
+          name: Category
+          required: true
+          type: integer
+        - description: Интересы
+          in: query
+          name: Interests
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: обновить интересы
+      tags:
+        - Member
+        - Interests
+  /profile/phone/update:
+    post:
+      consumes:
+        - application/json
+      description: PhoneUpdate
+      operationId: Member-Phone-Update
+      parameters:
+        - description: Новый номер мобильного телефона в формате 79999999999
+          in: query
+          name: Phone
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: запрос на обновление номера телефона пользователя
+      tags:
+        - Member
+        - Phone
+  /profile/phone/verify:
+    post:
+      consumes:
+        - application/json
+      description: PhoneVerify
+      operationId: Member-Phone-Verify
+      parameters:
+        - description: Код для подтверждения номера телефона
+          in: query
+          name: Code
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary:
+        подтверждение обновления номера телефона пользователя с помощью кода
+        подтверждения
+      tags:
+        - Member
+        - Phone
+  /profile/update:
+    post:
+      consumes:
+        - application/json
+      description: ProfileUpdate
+      operationId: Member-Profile-Update
+      parameters:
+        - description: Имя
+          in: query
+          name: Name
+          required: true
+          type: string
+        - description: Фамилия
+          in: query
+          name: Surname
+          required: true
+          type: string
+        - description: Отчество
+          in: query
+          name: Lastname
+          type: string
+        - description: Дата рождения в формате YYYY-MM-DD
+          in: query
+          name: Birthday
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: обновить профиль пользователя
+      tags:
+        - Member
+        - Profile
+  /report:
+    post:
+      consumes:
+        - application/json
+      description: Report
+      operationId: Member-Report
+      parameters:
+        - description: FeedID/DialogID
+          in: query
+          name: SubjectID
+          required: true
+          type: integer
+        - description: Код причины жалобы
+          in: query
+          name: Reason
+          required: true
+          type: integer
+        - description: Вид жалобы - feed/chat
+          in: query
+          name: Type
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/member.Success"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: жалоба на контент
+      tags:
+        - Member
+        - Report
+  /upload:
+    post:
+      consumes:
+        - multipart/form-data
+      description: ImageUpload
+      operationId: Operator-Image-Upload
+      parameters:
+        - description: Загружаемое изображение
+          in: formData
+          name: file
+          required: true
+          type: file
+        - description: "Название категории загружаемого файла: feed, profile"
+          in: formData
+          name: Category
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: FileName идентификатор загруженного файла
+          schema:
+            type: query
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/member.Error"
+      summary: загрузить файл изображения и получить в ответе имя загруженного файла
+      tags:
+        - Operator
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
